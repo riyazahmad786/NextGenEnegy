@@ -1,0 +1,35 @@
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050; /* Bootstrap modal z-index is 1040, so this is above it */
+}
+
+.toast {
+  opacity: 1 !important;
+  margin-bottom: 1rem;
+}
+.toast-success {
+  background-color: #28a745; /* Bootstrap success color */
+  color: white;
+}
+
+.toast-info {
+  background-color: #17a2b8; /* Bootstrap info color */
+  color: white;
+}
+
+.toast-warning {
+  background-color: #ffc107; /* Bootstrap warning color */
+  color: black;
+}
+
+.toast-danger {
+  background-color: #dc3545; /* Bootstrap danger color */
+  color: white;
+}
+
+.toast-error {
+  background-color: #ee6270; /* Bootstrap danger color */
+  color: white;
+}

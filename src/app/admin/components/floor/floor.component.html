@@ -1,0 +1,61 @@
+<app-menu></app-menu>
+<div class="FloorPadding">
+    <div class="da-card col-md-12 Page-border">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <app-collapsible-panel title="Add New Floor" [isCollapsed]="isPanelCollapsed()">
+                    <ng-template #panelContent>
+                        <div class="left col-md-6 pd-20 mw-100   card-box Div-border">
+                            <form [formGroup]="floorForm">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label id="">Facility Name: {{facilityName()}}</label><br>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <label id="">Building Name: {{buildingName()}}</label><br>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="" [hidden]="true" formControlName="locationId"
+                                                placeholder=""></app-iz-textbox>
+                                            <app-iz-textbox label="" [hidden]="true" formControlName="bLocationId"
+                                                placeholder=""></app-iz-textbox>
+                                            <app-iz-textbox label="" [hidden]="true" formControlName="parentLocationId"
+                                                placeholder=""></app-iz-textbox>
+                                            <app-iz-textbox label="" [hidden]="true" formControlName="facilityId"
+                                                placeholder=""></app-iz-textbox>
+                                            <app-iz-textbox label="Floor Name" formControlName="locationName"
+                                                placeholder="Enter Floor Name" [required]="true"></app-iz-textbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-right mt-3">
+                                        <button type="button" class="btn btn-info" (click)="onClear()">
+                                            Add New
+                                        </button>
+                                        <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                                            {{ isEditMode() ? 'Update' : 'Save' }}
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </ng-template>
+                </app-collapsible-panel>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="left col-md-6  mw-100 card-box Div-border">
+                    <app-iz-data-table [columns]="tableColumns" [data]="tableData" [actions]="tableActions"
+                        [pageSize]="5" [showSearch]="true" (actionClick)="handleAction($event)"></app-iz-data-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

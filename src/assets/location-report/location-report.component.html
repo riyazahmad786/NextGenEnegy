@@ -1,0 +1,269 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrollable Table</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      padding: 5px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      min-height: 100%;
+      color: black;
+      background: #ecf0f4;
+      min-width: 1700px;
+    }
+
+
+    /*   
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+  } */
+
+    .table-bordered {
+      border: 1px solid #dee2e6;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 5px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #186a92 !important;
+      ;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+
+    .row {
+      display: flex;
+      /* flex-wrap: wrap; */
+      margin-right: -15px;
+      padding-left: 40px;
+      padding-top: 5px;
+    }
+
+    .col-9,
+    .col-3,
+    .col,
+    .col-sm-4 {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .col-9 {
+      flex: 0 0 75%;
+      max-width: 75%;
+    }
+
+    .col-3 {
+      -webkit-box-flex: 0;
+      flex: 0 0 20%;
+      max-width: 25%;
+
+    }
+
+    .col-sm-4 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+
+    .col-md-3 {
+      -webkit-box-flex: 0;
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+
+    .col {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+
+    .font-14 {
+      font-size: 14px;
+    }
+
+    .media {
+      display: flex;
+      align-items: center;
+      padding-top: 30px;
+    }
+
+    .media-left {
+      margin-right: 10px;
+    }
+
+    .card-box {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+
+    .widget-style1 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .item-center {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .compar-total {
+      width: 100%;
+      text-align: center;
+    }
+
+    .titel-report {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .text-sm-center {
+      text-align: center;
+      margin: 8px;
+    }
+
+    .compar {
+      justify-content: center;
+    }
+
+
+    .report-container {
+      width: 100%;
+      /* or any specific width you prefer */
+      overflow-x: auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .widget-style1 {
+      padding: 0px;
+    }
+
+    .compar {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      justify-content: center;
+    }
+
+    .item-center {
+      justify-content: center;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap !important;
+    }
+
+    .compar-total {
+      padding-top: 7px !important;
+      background-color: #186a92 !important;
+      width: 100%;
+      height: 40px;
+      justify-content: center;
+    }
+
+    .compar-total1 {
+      width: 180px !important;
+    }
+
+    .compar-padding {
+      padding-left: 20px;
+    }
+
+    .titel-report {
+      font-size: 18px;
+      line-height: 1.35;
+      color: white;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .titel-report-text {
+      font-size: 10px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card-body {
+      padding: 0.25rem;
+    }
+
+    .highcharts-credits {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="padding-top: 25px;">
+    <div class="invoice-header1 mb-20" id="hourly-report">
+      <div class="row">
+        <div class="col-9">
+          <h5>FacilityHtml : locationHtml</h5>
+          <p class="font-14">
+            <strong>filterHtml</strong>
+          </p>
+          <p class="font-14">
+            DateTypeHtml
+          </p>
+        </div>
+        <div class="col-3">
+          <div class="media">
+            <div class="media-left pt-md-3">
+              <img [src]="iconSignal()" alt="Icon" />
+
+              <!-- <img [src]="iconUrl()" alt="Icon" /> -->
+
+              <!-- <img src="assets/vendors/images/deskapp-logo.png" alt="DeskApp Logo" style="height: 40px;" /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    probityTotal
+    <div class="item-center" style="display: flex; align-items: center; ">
+      <img src="ChartImage" alt="Exported Chart">
+    </div>
+    <div class="table-container" id="my-component-id">
+      tableRecords
+    </div>
+  </div>
+</body>
+
+</html>

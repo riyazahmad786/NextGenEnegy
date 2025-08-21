@@ -1,0 +1,14 @@
+.sidePaddingRight{
+    padding-left: 1px;
+    padding-right: 0px;
+    background-color: #ddd6d6;
+}
+
+.sidePaddingLeft{
+    padding-left: 1px; 
+    padding-right: 0px;
+    background-color: #ddd6d6;
+}
+.card-box, .da-card{
+    border-radius: 0px;
+}

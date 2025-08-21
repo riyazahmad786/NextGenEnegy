@@ -1,0 +1,37 @@
+.sizeofcard{
+    width: 200px;
+}
+.dropdown-toggle::after {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .user-name {
+    margin-right: auto;
+  }
+
+  .user-icon {
+    margin-right: 10px;
+  }
+
+  .compLogo{
+    height: 51px;
+  }
+  .user-info-dropdown {
+    padding: 2px 1px 5px 0;
+}
+
+.header-right {
+    padding-right: 10px;
+}
+
+.header{
+  width: 100%;
+}

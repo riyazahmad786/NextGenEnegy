@@ -1,0 +1,66 @@
+<div class="row row-padding">
+
+    <button type="button" id="eConsBtn" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Electricity Consumption' }"
+        (click)="actionSelect('Electricity Consumption')">
+        <div><i class="icon-copy dw dw-storm icon-buiColor"></i></div>
+        <div class="padding-top-10 btn-text-size">Electricity Consumption</div>
+    </button>
+
+    <button type="button" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Gas Consumption' }" (click)="actionSelect('Gas Consumption')">
+        <div><i class="icon-copy dw dw-co2 icon-buiColor"></i></div>
+        <div class="padding-top-10 btn-text-size">Gas Consumption</div>
+    </button>
+
+    <button type="button" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Water Consumption' }" (click)="actionSelect('Water Consumption')">
+        <div><i class="icon-copy dw dw-drop icon-buiColor"></i></div>
+        <div class="padding-top-10 btn-text-size">Water Consumption</div>
+    </button>
+    <button type="button" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Sustainability Report' }"
+        (click)="actionSelect('Sustainability Report')">
+        <div><i class="icon-copy dw dw-pine-1 icon-buiColor"></i></div>
+        <div class="padding-top-10 btn-text-size">Sustainability Report</div>
+    </button>
+
+    <!-- <i class="icon-copy fa fa-usd" aria-hidden="true"></i> -->
+    <button type="button" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Electricity Expenses' }"
+        (click)="actionSelect('Electricity Expenses')">
+        <div><i class="icon-copy  fa fa-usd icon-buiColor"></i></div>
+        <div class="padding-top-10 btn-text-size">Electricity Expense</div>
+    </button>
+
+    <button type="button" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Trend and Intensity Report' }"
+        (click)="actionSelect('Trend and Intensity Report')">
+        <div><i class="icon-copy dw dw-information icon-buiColor"></i></div>
+        <div class="padding-top-10 btn-text-size">Trend and Intensity Report</div>
+    </button>
+
+
+    <!-- Button to trigger the popup -->
+    <button type="button" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Weather Adjusted Energy Consumption' }"
+        (click)="actionSelect('Weather Adjusted Energy Consumption')">
+        <div><i class="icon-copy dw dw-clouds icon-buiColor"></i></div>
+        <div class="padding-top-10 btn-text-size">Weather Energy Consumption</div>
+    </button>
+
+
+    <button type="button" class="btn btn-eText btn-outline-info btn-lg btn-size"
+        [ngClass]="{ 'btn-selected': actionType === 'Peak Demand' }" (click)="actionSelect('Peak Demand')">
+        <div><i class="icon-copy dw dw-analytics-18 icon-buiColor fontStyle"></i></div>
+        <div class="padding-top-10 btn-text-size">Peak Demand</div>
+    </button>
+    <div class="modal" *ngIf="showMessage">
+        <div class="modal-content">
+            <span class="close-btn" (click)="closeModal()">&times;</span>
+            <h2>{{ selectedAction }} is Coming Soon!</h2>
+            <p>We are working on bringing this feature to you soon. Stay tuned!</p>
+        </div>
+    </div>
+
+</div>

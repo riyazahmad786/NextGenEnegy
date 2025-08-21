@@ -1,0 +1,58 @@
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="h4">Date Setting</h4>
+        </div>
+    </div>
+    <form data-select2-id="7">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="endDate">Daily</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" [readonly]="isReadonly"
+                            placeholder="yyyy-mm-dd-yyyy-mm-dd" [(bsValue)]="dailyRange" #dp2="bsDaterangepicker"
+                            name="dp2" bsDaterangepicker [bsConfig]="bsConfig" disabled="true">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="toggleDailyCalendar(dp2)"
+                                type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Monthly: </label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd-yyyy-mm-dd" #dp1="bsDaterangepicker"
+                            name="dp1" [(bsValue)]="monthlyRange" bsDaterangepicker [bsConfig]="bsConfigMonth"
+                            disabled="true">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="dp1.toggle()" type="button"><i
+                                    class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="startDate">Yearly</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd-yyyy-mm-dd" #dp="bsDaterangepicker"
+                            name="dp" [(bsValue)]="yearlyRange" bsDaterangepicker [bsConfig]="bsConfigYear"
+                            disabled="true">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i
+                                    class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions clearfix center-align">
+            <button type="button" class="btn btn-info" (click)="save()">Save</button>
+        </div>
+    </form>
+</div>

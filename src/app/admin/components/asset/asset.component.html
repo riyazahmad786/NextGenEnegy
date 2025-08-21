@@ -1,0 +1,265 @@
+<app-menu></app-menu>
+<div class="AssetPadding">
+    <div class="da-card col-md-12 Page-border">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12  sidePaddingLeft ">
+                <div class="left col-md-6 mw-100 pd-20 card-box Div-border">
+                    <form [formGroup]="assetForm">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <label id="">Facility Name: {{facilityName()}}</label><br>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label id="">Building Name: {{buildingName()}}</label><br>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label id="">Floor Name: {{floorName()}}</label>
+                            </div>
+                            <app-iz-textbox label="" [hidden]="true" formControlName="facilityId"
+                                placeholder=""></app-iz-textbox>
+                            <app-iz-textbox label="" [hidden]="true" formControlName="locationId"
+                                placeholder=""></app-iz-textbox>
+                        </div>
+                        <div class="BoxPadding">
+                            <div class="row Box-border">
+                                <div class="col-md-6 col-sm-12">
+                                    <app-iz-textbox label="Asset Name" formControlName="assetName"
+                                        placeholder="Enter Asset Name" [required]="true"></app-iz-textbox>
+                                    <div *ngIf="assetForm.get('assetName')?.invalid && 
+                                        (assetForm.get('assetName')?.dirty || assetForm.get('assetName')?.touched)"
+                                        class="text-danger">
+                                        Asset Name is required
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <app-iz-textbox label="Asset Number" formControlName="assetNumber"
+                                        placeholder="Enter Asset Number" [required]="true"></app-iz-textbox>
+                                    <div *ngIf="assetForm.get('assetNumber')?.invalid && 
+                                        (assetForm.get('assetNumber')?.dirty || assetForm.get('assetNumber')?.touched)"
+                                        class="text-danger">
+                                        Asset Number is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="BoxPadding">
+                            <div class="row ">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <app-iz-dropdown label="Type" [options]="typeOptions()"
+                                            formControlName="assetTypeId" [required]="true"
+                                            (change)="onTypeChange($event)"></app-iz-dropdown>
+                                        <div *ngIf="assetForm.get('assetTypeId')?.invalid && 
+                                        (assetForm.get('assetTypeId')?.dirty || assetForm.get('assetTypeId')?.touched)"
+                                            class="text-danger">
+                                            Asset Type is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <app-iz-dropdown label="Measurement Unit" [options]="mUnitOptions()"
+                                            formControlName="unitId" (change)="onmUnitChange($event)"
+                                            [required]="true"></app-iz-dropdown>
+                                        <div *ngIf="assetForm.get('unitId')?.invalid && 
+                                        (assetForm.get('unitId')?.dirty || assetForm.get('unitId')?.touched)"
+                                            class="text-danger">
+                                            Asset Measurement Unit is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <app-iz-textbox label="Area" formControlName="area" placeholder="Enter Asset Area"
+                                        [required]="true"></app-iz-textbox>
+                                    <div *ngIf="assetForm.get('area')?.invalid && 
+                                        (assetForm.get('area')?.dirty || assetForm.get('area')?.touched)"
+                                        class="text-danger">
+                                        Asset Area is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <app-iz-textbox label="Area Unit" formControlName="areaUnit"
+                                        placeholder="Enter Area Unit" [required]="true"></app-iz-textbox>
+                                    <div *ngIf="assetForm.get('areaUnit')?.invalid && 
+                                        (assetForm.get('areaUnit')?.dirty || assetForm.get('areaUnit')?.touched)"
+                                        class="text-danger">
+                                        Asset Area Unit is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <app-iz-textbox label="Capacity" formControlName="capacity"
+                                        placeholder="Enter Capacity" [required]="true"></app-iz-textbox>
+                                    <div *ngIf="assetForm.get('capacity')?.invalid && 
+                                        (assetForm.get('capacity')?.dirty || assetForm.get('capacity')?.touched)"
+                                        class="text-danger">
+                                        Asset capacity is required
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <app-iz-textbox label="Capacity Unit" formControlName="capacityUnit"
+                                        placeholder="Enter Capacity Unit" [required]="true"></app-iz-textbox>
+                                    <div *ngIf="assetForm.get('capacityUnit')?.invalid && 
+                                        (assetForm.get('capacityUnit')?.dirty || assetForm.get('capacityUnit')?.touched)"
+                                        class="text-danger">
+                                        Asset Capacity Unit is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="BoxPadding">
+                            <div class="row Box-border">
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <input type="file" class="form-control-file form-control height-auto"
+                                            style="margin-top: 6px;">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <label id=""></label>
+                                        <button type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff"
+                                            style=" color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+                                            Calculate
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <app-iz-textbox label="Slope" formControlName="slope" placeholder="Enter Slope" />
+                                    <!-- <div class="form-group">
+                                        <label id="">Slope:</label>
+                                        <input type="text" class="form-control">
+                                    </div> -->
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <app-iz-textbox label="Constant" formControlName="constant"
+                                        placeholder="Enter Constant" />
+                                    <!-- <div class="form-group">
+                                        <label id="">Constant:</label>
+                                        <input type="text" class="form-control">
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-6 col-sm-12">
+                                <label>Intensity:</label>
+                            </div>
+                            <div class=" col-md-6 col-sm-12">
+                                <label>Budget:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-5 col-sm-12 Box-border">
+                                <app-iz-textbox label="Monthly Intensity" formControlName="targetIntensity"
+                                    placeholder="Enter Monthly Intensity" />
+                                <!-- <div class="form-group">
+                                                            <span class="aistrick" id="">Monthly Intensity:</span>
+                                                            <input type="text" class="form-control">
+                                                        </div> -->
+                            </div>
+                            <div class=" col-md-5 col-sm-12 Box-border" style="margin-left:8%;">
+                                <app-iz-textbox label="Budget" formControlName="targetBudget"
+                                    placeholder="Enter Budget" />
+                                <!-- <div class="form-group ">
+                                                            <span class="aistrick" id="">Budget:</span>
+                                                            <input type="text" class="form-control">
+                                                        </div> -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-6 col-sm-12">
+                                <label>Rate:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-8 col-sm-12 Box-border">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <app-iz-textbox label="Amount" formControlName="utilityRate"
+                                            placeholder="Enter Amount" />
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+
+                                        <label class="aistrick" id="">Effective Date:</label>
+                                        <input bsDatepicker formControlName="rateDate" class="form-control date-picker"
+                                            placeholder="Select Date" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Swati Changes-->
+                        <div class="row">
+                            <div class=" col-md-6 col-sm-12">
+                                <label>BACnet Association:</label>
+                            </div>
+                        </div>
+                        <div class="BoxPadding">
+                            <div class="row Box-border">
+                                <div class="col-md-1 col-sm-12">
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <button type="button" class="btn btn-info associatebtn"
+                                        (click)="associateWithBACnetPoint()">
+                                        Associate with BACnet point
+                                    </button>
+                                </div>
+
+                                <div class="col-md-5 col-sm-12" style="margin-top: 28px;">
+                                    <div class="custom-control custom-checkbox mb-5">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Read from
+                                            Database</label>
+                                    </div>
+                                </div>
+                                <!-- In your asset.component.html -->
+                                <div class="form-group">
+                                    <app-iz-dropdown label="Select Device" [options]="deviceOptions"
+                                        formControlName="selectedDevice" (change)="onDeviceChange($event)"
+                                        [required]="true"></app-iz-dropdown>
+                                </div>
+                                <div class="form-group">
+
+                                    <app-iz-dropdown label="Select Object" [options]="objectOptions"
+                                        formControlName="selectedObject" (change)="onObjectChange($event)"
+                                        [required]="true"></app-iz-dropdown>
+                                </div>
+
+
+                                <div class="col-md-12 association">
+                                    <div class="form-group">
+                                        <input type="text" id="txtAssociation" class="form-control mand"
+                                            formControlName="txtAssociation"
+                                            placeholder="Device Name : Object Name : Device Parameter" readonly />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right mt-3">
+                                <button type="button" class="btn btn-info" (click)="onAdd()">
+                                    Add New
+                                </button>
+                                @if (!isViewMode()) {
+                                <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                                    {{ isEditMode() ? 'Update' : 'Save' }}
+                                </button>
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 sidePaddingRight">
+                <div class="right col-md-12 mw-100 card-box Div-border">
+                    <app-iz-data-table [columns]="tableColumns" [data]="tableData" [actions]="tableActions"
+                        [pageSize]="5" [showSearch]="true" (actionClick)="handleAction($event)"></app-iz-data-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

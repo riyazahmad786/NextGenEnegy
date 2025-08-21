@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
+        <div class="card-box height-100-p widget-style3">
+            <div class="d-flex flex-wrap">
+                <div class="widget-data" style="padding: 0px;">
+                    <div class="btn-list">
+                        @if (loading$ | async) {
+                        <div class="spinner-container">
+                            <!-- Spinner overlay content here -->
+                            <div class="spinner-overlay">
+                                <app-spinner></app-spinner>
+                            </div>
+                        </div>
+                        }
+                        @if ((loading$ | async) === false) {
+                        @for (facility of facilities; track $index) {
+                        <button type="button" [class.active]="selectedIndex === $index"
+                            (click)="selectFacility($index, facility)" class="btn btn-outline-success">
+                            {{ facility.FacilityName }}
+                        </button>
+                        }
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@if (facilitiesData) {
+<app-google-map [facilitiesData]="facilitiesData"></app-google-map>
+<app-facility-consumption-expenses [facilitiesData]="facilitiesData"></app-facility-consumption-expenses>
+}

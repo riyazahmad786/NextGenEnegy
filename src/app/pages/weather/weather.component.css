@@ -1,0 +1,9 @@
+.flex-container {
+    display: flex;
+    align-items: center; /* This will vertically center the text next to the image */
+    justify-content: center; /* This will horizontally center the content */
+  }
+  .placeholder {
+    visibility: hidden;
+    height: 30px; /* Adjust to match the height of the area text */
+}

@@ -1,0 +1,59 @@
+.btn-size{
+    width: 130px;height: 100px;
+}
+
+.btn-text-size{
+    width: 100px;
+}
+
+.row-padding{
+    padding-left: 21px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.fontStyle{
+    font-weight: bold;
+}
+
+.btn-selected {
+    background-color: #17a2b8; /* Change to your desired color */
+    color: white; /* Change text color if needed */
+  }
+  
+  .btn-selected .icon-buiColor {
+    color: white; /* Adjust icon color if necessary */
+  }
+
+
+ /* Modal styles */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  

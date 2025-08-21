@@ -1,0 +1,36 @@
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="h4">Upload Image</h4>
+        </div>
+    </div>
+    <form data-select2-id="7">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="endDate">Company Logo:</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Icon" type="file" (change)="onIconFileSelected($event)"
+                            accept="image/*" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Login Page Background: </label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="bgImage" type="file"
+                            (change)="onBgImageFileSelected($event)" accept="image/*" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions clearfix center-align">
+            <button type="button" class="btn btn-info" (click)="onUpload()">Save</button>
+        </div>
+
+    </form>
+
+</div>

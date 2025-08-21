@@ -1,0 +1,23 @@
+.custom-card-header {
+    background-color: #f5f5f5 ; /* Light grey background */
+    border-bottom: 1px solid #ddd; /* Light grey border */    
+    font-size: 14px;
+    font-weight: 500; /* Medium font weight */
+    height: 30px;
+    color: #333;
+  }
+  
+  .toggle-button {
+    font-size: 19px;
+    color: rgb(66, 63, 63); /* Bootstrap primary color */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .toggle-button:hover {
+    color: black; /* Darker shade on hover */
+    text-decoration: none; /* Remove underline on hover */
+  }
+
+  .card-body{
+    padding: .90rem;
+  }

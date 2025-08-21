@@ -1,0 +1,83 @@
+<app-menu></app-menu>
+<div class="da-card col-md-12 Page-border">
+    <div>
+        <div class="row">
+            <div class="col-md-12 d-flex">
+                <div class="col-md-1"></div>
+                <div class="left col-md-10 pd-20 card-box Div-border">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <label id="">Choose Reading Source:</label><br>
+                            </div>
+                            <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12" id="liBASMAS">
+                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio1">BAS/BMS</label>
+                            </div>
+                            <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12" id="liExcell">
+                                <input type="radio" onclick="goToPageR()" id="customRadio2" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">Utility Bill
+                                    Import</label>
+                            </div>
+                            <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12" id="liEnergyStar">
+                                <input type="radio" onclick="goToPageI()" id="customRadio3" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio3">Energy Star</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 readingRouce">
+                            <label class="readingLabel" id="IZTUtilitybill">BAS/BMS</label>
+                        </div>
+                        <br>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="aistrick" id="">Facility:</label>
+                                        <select class="custom-select form-control">
+                                            <option value="">Select Facility</option>
+                                            <option value="">USA</option>
+                                            <option value="">CANADA</option>
+                                            <option value="">INDIA</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12" style="margin-top: 20px;">
+                                        <input type="submit" id="" class="btn form-control" data-bgcolor="#3b5998" data-color="#ffffff" onclick="" value="Realtime Device Discovery" style="color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+                                        <input type="submit" id="" class="btn form-control" data-bgcolor="#3b5998" data-color="#ffffff" onclick="" value="Import BACnet Data from CSV" style="color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control-file form-control height-auto">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10 row Device-border da-card enable-disable">
+                                            <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12" id="liBASMAS">
+                                                <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input"><br>
+                                                <label class="custom-control-label" for="customRadio4">Enable</label>
+                                            </div>
+                                            <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12" id="liBASMAS">
+                                                <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input"><br>
+                                                <label class="custom-control-label" for="customRadio5">Disable</label>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12" style="text-align:right">
+                                                <button type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                
+                            </div>
+                        </div>
+                </form></div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>

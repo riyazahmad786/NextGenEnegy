@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg nav-barColor">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                @for (route of getFilteredRoutes(); track $index) {
+                <li class="nav-item">
+                    @if (isRouteDisabled(route.path)) {
+                    <span class="nav-link disabled">
+                        {{ route.label }}
+                    </span>
+                    } @else {
+                    <a class="nav-link" [routerLink]="route.path" routerLinkActive="active">
+                        {{ route.label }}
+                    </a>
+                    }
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

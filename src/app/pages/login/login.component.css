@@ -1,0 +1,64 @@
+.input-group.custom .form-control {
+    border: 1px solid #ced4da; /* Default border */
+  }
+  
+  .input-group.custom .form-control.is-invalid {
+    border-color: red; /* Red border for invalid input */
+  }
+  
+  .alert-danger {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+  
+  .errorIcon{
+    font-size: 0.8rem;
+    color: red;
+  }
+.compLogo{
+  height: 120px;
+}
+/* login.component.css */
+
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-password-title {
+  margin-bottom: 20px;
+}
+
+.forgot-password-title h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.forgot-password {
+  text-align: right;
+}
+
+.alert {
+  margin-top: 10px;
+}
+
+.forgot-password .alert {
+  margin-top: 20px;
+}
+
+.forgot-password .btn {
+  margin-top: 20px;
+}
+
+.forgot-password .back-to-login {
+  margin-top: 20px;
+}

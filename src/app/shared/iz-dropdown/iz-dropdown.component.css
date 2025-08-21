@@ -1,0 +1,18 @@
+.dropdown-container {
+  width: 100%;
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+  }
+}
+.border-red {
+  border: 1px solid red !important;
+}
+
+.border-normal {
+  border: 1px solid #ced4da !important; /* Normal Bootstrap border color */
+}

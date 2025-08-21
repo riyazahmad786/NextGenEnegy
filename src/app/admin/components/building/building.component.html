@@ -1,0 +1,121 @@
+<app-menu></app-menu>
+<div class="BuildingPadding">
+    <div class="da-card col-md-12 Page-border">
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <app-collapsible-panel title="Add New Building" [isCollapsed]="isPanelCollapsed()">
+                    <ng-template #panelContent>
+                        <div class="left col-md-6  mw-100 card-box Div-border">
+                            <form [formGroup]="buildingForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span>Facility Name: {{facilityName()}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="" [hidden]="true" formControlName="locationId"
+                                                placeholder=""></app-iz-textbox>
+                                            <app-iz-textbox label="" [hidden]="true" formControlName="parentLocationId"
+                                                placeholder=""></app-iz-textbox>
+                                            <app-iz-textbox label="" [hidden]="true" formControlName="facilityId"
+                                                placeholder=""></app-iz-textbox>
+                                            <app-iz-textbox label="Building Name" formControlName="locationName"
+                                                placeholder="Enter Building Name" [required]="true"></app-iz-textbox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="Address 1" formControlName="address1"
+                                                placeholder="Enter the Address" [required]="true"></app-iz-textbox>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="Address 2" formControlName="address2"
+                                                placeholder="Enter the Address"></app-iz-textbox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-dropdown [options]="countryOptions()" label="Country"
+                                                formControlName="country" (change)="onCountryChange($event)"
+                                                [required]="true"></app-iz-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-dropdown [options]="stateOptions()" label="State"
+                                                formControlName="state" [required]="true"></app-iz-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="City" formControlName="city"
+                                                placeholder="Enter the City" [required]="true"></app-iz-textbox>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="Postal Code" formControlName="postalCode"
+                                                placeholder="Enter Pin Code" [required]="true"></app-iz-textbox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="Mobile Number" formControlName="phoneNumber"
+                                                placeholder="Enter Mobile No." [type]="'number'"
+                                                [required]="true"></app-iz-textbox>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-textbox label="Email" formControlName="emailAddress"
+                                                placeholder="Enter Email Id" [required]="true"></app-iz-textbox>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 text-right mt-3">
+                                        <button type="button" class="btn btn-info" (click)="onClear()">
+                                            Add New
+                                        </button>
+                                        <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                                            {{ isEditMode() ? 'Update' : 'Save' }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </ng-template>
+                </app-collapsible-panel>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="left col-md-6  mw-100 card-box Div-border">
+                    <app-iz-data-table [columns]="tableColumns" [data]="tableData" [actions]="tableActions"
+                        [pageSize]="5" [showSearch]="true" (actionClick)="handleAction($event)"></app-iz-data-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

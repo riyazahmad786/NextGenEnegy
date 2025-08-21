@@ -1,0 +1,35 @@
+<div class="container">  
+    <div class="row">
+        <div class="col-md-7"> 
+            <strong>Summary:</strong>
+        </div>
+        <div class="col-md-5">
+            <strong>Period:</strong> {{periodStartDate()}} / {{periodEndDate()}}
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover" width="100%">
+            <thead>
+                <tr>
+                    <th>Building name</th>
+                    <th>Actual expense</th>
+                    <th>Target budget</th>
+                    <th>% Usage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of assets; track $index) {
+                <tr>
+                    <td>{{item.AssetName}}</td>
+                    <td>{{item.value}}</td>
+                    <td>{{item.TargetBudget}}</td>
+                    <td><span
+                            [ngClass]="{ 'text-danger': item.BudgetPercent > 100, 'text-success': item.BudgetPercent <= 100 }">
+                            {{ item.BudgetPercent }}
+                        </span></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

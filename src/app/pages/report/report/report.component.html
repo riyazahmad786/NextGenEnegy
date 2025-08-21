@@ -1,0 +1,110 @@
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/dashboard']">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/building']">Building</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Report
+    </li>
+  </ol>
+</nav>
+@if (seriesData.length>0) {
+<app-filters></app-filters>
+
+}
+@else {
+<app-filters [isDisabled]="seriesData.length>0"></app-filters>
+
+}
+
+
+@if (seriesData.length>0) {
+@if(seriesData !=null){
+
+<div #content>
+  <div class="invoice-header1 mb-20" id="hourly-report">
+    <div class="row">
+      <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+        <h5 class="mb-5">{{facility()}} : {{ location() }}</h5>
+        <p class="font-14 mb-5">
+          <strong class="weight-600">{{ reportFullName() }}</strong>
+        </p>
+        <p class="font-14 mb-5">
+          <strong class="weight-600">From: {{ startDate() }} @if (filterType()!=='Hourly') {<span> to: {{ endDate()
+              }}</span>}</strong>
+        </p>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+        <div class="media">
+          <div class="media-left pt-md-3">
+            <!-- <img [src]="icon$()" alt="Image" style="height: 100px;" [hidden]="true" /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (filterType() !== 'Yearly') {
+  <div class="row compar">
+    <div *ngFor="let item of conclusion" class="col-md-3 col-sm-4">
+      <div class="card-box widget-style1">
+        <div class="d-flex flex-wrap item-center">
+          <div class="row compar-total">
+            <div class="titel-report">
+              <span>{{ item.title }}: </span>
+              {{ unitType() === 'kWh/Sq-ft' ? (item.totalValue | number:'1.2-2') : (item.totalValue | rounding) }}
+              <span class="titel-report-text">{{unitType()}}</span>
+            </div>
+          </div>
+          <div class="row compar">
+            <div class="col text-lg-start">
+              <h6 class="text-sm-center">Min</h6>
+              <p>{{ unitType() === 'kWh/Sq-ft' ? (item.minValue | number:'1.2-2') : (item.minValue | rounding) }}</p>
+            </div>
+            <div class="col text-lg-center">
+              <h6 class="text-sm-center">Max</h6>
+              <p>{{ unitType() === 'kWh/Sq-ft' ? (item.maxValue | number:'1.2-2') : (item.maxValue | rounding) }}</p>
+            </div>
+            <div class="col text-lg-end">
+              <h6 class="text-sm-center">Avg</h6>
+              <p>{{ unitType() === 'kWh/Sq-ft' ? (item.averageValue | number:'1.2-2') : (item.averageValue | rounding)
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+
+
+  <app-hourly-consumption [seriesData]="seriesData" [filterType]="filterType()" (assetsChange)="onAssetsChange($event)"
+    [title]="reportFullName()" [unitType]="unitType()" [maxLine]="MaxLine()"></app-hourly-consumption>
+
+  <!-- @if (filterType()!=='Yearly') { -->
+  <app-collapsible-panel title="Records {{reportFullName()}} ({{unitType()}})">
+    <ng-template #panelContent>
+      <div *ngIf="assets">
+        @if (filterType()==='MonthlyAgainstBudget'||filterType()==='YearlyAgainstBudget') {
+        <app-report-against-budget-table [assets]="assets" [periodStartDate]="startDate" [periodEndDate]="endDate">
+        </app-report-against-budget-table>
+        }
+        @else {
+        <app-report-table [assets]="assets" [reportType]="filterTypeSet()"></app-report-table>
+        }
+
+      </div>
+    </ng-template>
+  </app-collapsible-panel>
+  <!-- } -->
+</div>
+
+}
+}
+@else {
+<div>No data available</div>
+}

@@ -1,0 +1,102 @@
+<app-collapsible-panel title="Add New Facility" [isCollapsed]="isPanelCollapsed()">
+    <ng-template #panelContent>
+        <div class="left col-md-6  mw-100 card-box Div-border">
+            <form [formGroup]="facilityForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-textbox label="" [hidden]="true" formControlName="facilityId"
+                                placeholder="Facility Name"></app-iz-textbox>
+                            <app-iz-textbox label="Facility Name" formControlName="facilityName"
+                                placeholder="Facility Name" [required]="true"></app-iz-textbox>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-textbox label="Address 1" formControlName="address1" placeholder="Enter the Address"
+                                [required]="true"></app-iz-textbox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-textbox label="Address 2" formControlName="address2"
+                                placeholder="Enter the Address"></app-iz-textbox>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-dropdown [options]="countryOptions()" label="Country" formControlName="country"
+                                (change)="onCountryChange($event)" [required]="true"></app-iz-dropdown>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-dropdown [options]="stateOptions()" label="State" formControlName="state"
+                                [required]="true"></app-iz-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-textbox label="City" formControlName="city" placeholder="Enter the City"
+                                [required]="true"></app-iz-textbox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-textbox label="Postal Code" [type]="'number'" formControlName="postalCode"
+                                placeholder="Enter Pin Code" [required]="true"></app-iz-textbox>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-textbox label="Mobile Number" [type]="'number'" formControlName="phoneNumber"
+                                placeholder="Enter Mobile No." [required]="true"></app-iz-textbox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-textbox label="Email" formControlName="emailAddress" placeholder="Enter Email Id"
+                                [required]="true"></app-iz-textbox>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <app-iz-dropdown label="Time Zone" [options]="timeZoneOptions()" formControlName="timeZone"
+                                [required]="true"></app-iz-dropdown>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-right mt-3">
+                        <button type="button" class="btn btn-info" (click)="onClear()">
+                            Add New
+                        </button>
+                        <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                            {{ isEditMode() ? 'Update' : 'Save' }}
+                        </button>
+
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </ng-template>
+</app-collapsible-panel>
+<div class="left col-md-6  mw-100 card-box Div-border">
+    <app-iz-data-table [columns]="tableColumns" [data]="tableData" [actions]="tableActions" [pageSize]="5"
+        [showSearch]="true" (actionClick)="handleAction($event)"></app-iz-data-table>
+</div>

@@ -1,0 +1,175 @@
+<div class="pd-20 card-box mb-30">
+
+    <div class="clearfix">
+        <div class="float-left">
+            <h4 class="h4">Scheduler</h4>
+        </div>
+    </div>
+    <div class="row" style="background-color:white;">
+        <div class="col-md-6 mb-3">
+            <table id="tblsetting" class="table table-bordered tblsetting1">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center reportHeader">Reports</th>
+                        <th class="text-center reportHeader">Schedule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tdPading">
+                            <label class="labelFont" for="chk1">Daily Energy Consumption</label>
+                        </td>
+                        <td class="text-center tdPading">
+                            <input type="checkbox" id="shedul1" class="ReportShedul" value="1" name="shedul">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdPading">
+                            <label class="labelFont" for="chk2">Monthly Energy Consumption</label>
+                        </td>
+                        <td class="text-center tdPading">
+                            <input type="checkbox" id="shedul2" class="ReportShedul" value="2" name="shedul">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdPading">
+                            <label class="labelFont" for="chk3">Monthly Trend</label>
+                        </td>
+                        <td class="text-center tdPading">
+                            <input type="checkbox" id="shedul3" class="ReportShedul" value="3" name="shedul">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdPading">
+                            <label class="labelFont" for="chk4">Monthly Energy Intensity</label>
+                        </td>
+                        <td class="text-center tdPading">
+                            <input type="checkbox" id="shedul4" class="ReportShedul" value="4" name="shedul">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdPading">
+                            <label class="labelFont" for="chk5">Monthly Energy Expenses</label>
+                        </td>
+                        <td class="text-center tdPading">
+                            <input type="checkbox" id="shedul5" class="ReportShedul" value="5" name="shedul">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdPading">
+                            <label class="labelFont" for="chk6">Monthly Gas Consumption</label>
+                        </td>
+                        <td class="text-center tdPading">
+                            <input type="checkbox" id="shedul6" class="ReportShedul" value="6" name="shedul">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 border rounded mb-3 bg">
+            <div class="form-group row">
+                <div class="col-md-3 mt-2 mb-2 ">
+                    <input type="checkbox" [(ngModel)]="ScheduleChecked" (change)="onShedulChange($event)" />
+                    <label class="labelFont label1" for="chkIsShedul">Schedule</label>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-md-11 mt-2 mb-2 ">
+                        <select class=" form-control select-type" [(ngModel)]="selectedType"
+                            (change)="onSelectType($event)">
+                            <option value="Select">Select</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group row" *ngIf="ScheduleChecked && selectedType === 'Weekly'">
+
+                    <div class="col-md-9">
+                        <div class="dropdown weekly-dropdown">
+                            <button class="form-control select-days dropdown-toggle fixed-width-button"
+                                [(ngModel)]="selectedDays" type="button" (click)="toggleDropdown($event)">
+
+                                {{ selectedDays.length > 1 ? selectedDays.slice(0, 1).join(', ') + '...' :
+                                selectedDays.join(', ') }}
+                            </button>
+                            <div *ngIf="dropdownOpen" class="dropdown-menu show">
+                                <div *ngFor="let day of weekdays">
+                                    <label>
+                                        <input type="checkbox" class="day-checkbox"
+                                            [checked]="selectedDays.includes(day)"
+                                            (change)="onSelectDay(day, $event)" />
+                                        {{ day }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedType === 'Weekly' && selectedDays.length === 0 && isSaveClicked"
+                            class="text-danger">
+                            *Days Required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row" *ngIf="ScheduleChecked && selectedType === 'Monthly'">
+                    <div class="col-md-10">
+                        <div class="dropdown monthly-dropdown">
+                            <button class="form-control select-days dropdown-toggle fixed-width-button"
+                                [(ngModel)]="selectedDays" type="button" (click)="toggleDropdown($event)">
+                                {{ selectedDays.length > 1 ? selectedDays.slice(0, 1).join(', ') + '...' :
+                                selectedDays.join(', ') }}
+                            </button>
+                            <div *ngIf="dropdownOpen" class="dropdown-menu show">
+                                <div *ngFor="let option of monthlyOptions">
+                                    <label>
+                                        <input type="checkbox" [checked]="selectedDays.includes(option.label)"
+                                            (change)="onSelectMonth(option.label, $event)" />
+                                        {{ option.label }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group row">
+                <label class="labelFont col-md-3" for="ShedulTime">Time <span class="text-danger"
+                        *ngIf="isSaveClicked"></span></label>
+                <div class="col-md-4">
+                    <input type="time" name="enddate" id="ShedulTime" class="form-control" [(ngModel)]="scheduleTime"
+                        required />
+                    <div *ngIf="isSaveClicked && !scheduleTime" class="text-danger">
+                        *Time is required
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <label class="labelFont format" for="ShedulTime">24-hour Format</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="labelFont col-md-3" for="EmailAddress">Email ID <span class="text-danger"
+                        *ngIf="isSaveClicked "></span></label>
+                <div class="col-md-9">
+                    <input type="text" name="EmailAddress" id="EmailAddress" class="form-control" [(ngModel)]="emailId"
+                        placeholder="Enter your email" required>
+                    <div *ngIf="isSaveClicked && !emailId" class="text-danger">
+
+                        *Email ID is required
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="actions clearfix center-align">
+            <button type="button" class="btn btn-info" (click)="saveSchedule()">Save</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+
+/*   
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+  } */
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+    table, th, td {
+    border: 1px solid #ddd;
+    }
+    th, td {
+    padding: 5px;
+    text-align: center;
+    }
+    th {
+    background-color: #186a92 !important;;
+    color: white;
+    }
+    tr:nth-child(even) {
+    background-color: #f2f2f2;
+    }

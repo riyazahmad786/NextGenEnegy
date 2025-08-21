@@ -1,0 +1,108 @@
+.btn-outline-secondary {
+  color: #fff;
+  background-color: #1b00ff;
+  border-color: #1b00ff;
+}
+.Div-border {
+  border: 1px solid #535353;
+}
+.Page-border {
+  border: 2px solid #6d6e70;
+  padding: 25px;
+}
+.da-card,
+.da-card .da-card-photo {
+  position: relative;
+  overflow: hidden;
+}
+.card-box,
+.da-card {
+  background-color: #ffff;
+  border-radius: 8px;
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.08);
+}
+
+.BoxPadding {
+  padding: 2px;
+}
+.Box-border {
+  border: 1px solid #d0d1d1;
+}
+.readingRouce {
+  background-color: rgb(0, 132, 255);
+}
+.readingLabel {
+  font-size: 20px;
+  color: white;
+  padding-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.label {
+  display: inline-block;
+  cursor: default;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+element.style {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 123, 181);
+}
+.Button-border {
+  width: 130px;
+  border: 2px solid #28292b !important;
+}
+.btn {
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0;
+  font-weight: 500;
+  padding: 0.719rem 1rem;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 8px;
+}
+
+.Button-border {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 123, 181);
+  border: none;
+  padding: 10px 15px;
+  width: 100%;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.Button-border.active {
+  background-color: rgb(255, 193, 7) !important; /* Active color */
+  color: black !important;
+}
+
+.content-section {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+}
+
+.custom-radio {
+  margin-right: 15px;
+}.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}

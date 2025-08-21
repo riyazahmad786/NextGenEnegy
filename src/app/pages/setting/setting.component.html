@@ -1,0 +1,53 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="title">
+                <h4>Report Setting</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a [routerLink]="['/dashboard']">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Setting
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-sm-6">
+        <div class="form-group">
+            <label for="sel1">Facility :</label>
+            <select class="custom-select form-control" data-live-search="false" title="Select an option"
+                [(ngModel)]="facilityId" (change)="onFacilityChange($event)">
+                <option value="">Select </option>
+                @for (item of facilities; track $index) {
+                <option value={{item.FacilitiesID}}> {{item.FacilityName}} </option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="form-group">
+            <label for="sel1">Location :</label>
+            <select class="custom-select form-control" data-live-search="false" title="Select an option"
+                [(ngModel)]="siteId" (change)="onLocationChange($event)">
+                <option value="">Select </option>
+                @for (item of locations; track $index) {
+                <option [attr.disabled]="item.BuildingAvailable==0 ? 'disabled' : null" value={{item.LocationID}}>
+                    {{item.LocationName}} </option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+<app-date-range [siteId]="siteId()" [facilityId]="facilityId()" [userId]="this.userId()"></app-date-range>
+<app-scheduler [siteId]="siteId()" [facilityId]="facilityId()" [userId]="this.userId()"
+    (facilityId)=" onFacilityChange($event)">></app-scheduler>
+@if (shouldShowAdminLink()) {
+<app-upload-image></app-upload-image>
+}

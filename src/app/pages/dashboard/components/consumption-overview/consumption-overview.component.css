@@ -1,0 +1,18 @@
+
+.eleData-bgcolor{
+    background-color:#455a64 !important ;
+}
+
+.gasData-bgcolor{
+    background-color:#455a64 !important ;
+}
+
+.waterData-bgcolor{
+    background-color: #186a92 !important;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center; /* This will vertically center the text next to the image */
+    justify-content: center; /* This will horizontally center the content */
+  }

@@ -1,0 +1,5 @@
+input[readonly] {
+    background-color: #f5f5f5; /* Light gray background */
+    opacity: 0.8; /* Optionally reduce opacity to indicate readonly state */
+    cursor: not-allowed; /* Change cursor to indicate the field is not interactive */
+}

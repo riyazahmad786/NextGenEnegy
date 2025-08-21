@@ -1,0 +1,20 @@
+<div class="form-group">
+    @if (label) {
+    <label [for]="inputId" class="form-label">
+        {{ label }}
+        @if (required) {
+        <span style="color: red;"> *</span>
+        }
+    </label>
+    }
+    <input [id]="inputId" [type]="type" [attr.placeholder]="placeholder ? placeholder : 'Enter value'"
+        [attr.title]="title ? title : (label ? label : placeholder ? placeholder : 'Input field')" [class]="customClass"
+        [value]="value" (input)="onInputChange($event)" [attr.required]="required ? true : null"
+        [attr.minlength]="minLength ? minLength : null" [attr.maxlength]="maxLength ? maxLength : null"
+        [attr.pattern]="pattern ? pattern : null" [disabled]="disabled" class="form-control"
+        [attr.aria-label]="label ? label : (placeholder ? placeholder : 'Input field')"
+        [ngClass]="{'border-red': required && isEmpty, 'border-normal': !isEmpty}" />
+
+    <!-- Validation Message -->
+
+</div>

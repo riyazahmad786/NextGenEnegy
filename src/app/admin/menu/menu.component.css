@@ -1,0 +1,41 @@
+.btn-outline-primary {
+  color: #fff;
+  background-color: #1b00ff;
+  border-color: #1b00ff;
+}
+.btn-list .btn {
+  margin: 5px;
+  color: #fff;
+}
+.btn {
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0;
+  font-weight: 500;
+  padding: 0.719rem 1rem;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 8px;
+}
+.nav-link.active {
+  color: #fff !important;
+  background-color: #476f9c;
+  border-radius: 4px;
+}
+.nav-barColor {
+  background-color: rgb(41, 66, 121);
+  color: rgb(255, 255, 255);
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0;
+  font-weight: 500;
+  padding: 0.419rem 1rem;
+  font-size: 14px;
+  line-height: 10px;
+  border-radius: 8px;
+}
+
+nav ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  font-weight: 600;
+}

@@ -1,0 +1,53 @@
+.report-container {
+    width: 100%; /* or any specific width you prefer */
+overflow-x: auto;
+background: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+text-align: center;
+color: #333;
+}
+
+.widget-style1 {
+    padding: 0px;
+}
+
+.compar{
+   padding-top: 10px;
+   padding-bottom: 10px;
+   justify-content: center;
+}
+.item-center{
+    justify-content: center;
+}
+.compar-total{
+    padding-top: 7px !important;
+    background-color: #186a92 !important;
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+}
+
+.compar-total1{
+    width: 180px !important;
+}
+
+.compar-padding{padding-left: 20px;
+}
+
+.titel-report{
+    font-size: 18px;
+    line-height: 1.35;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.titel-report-text{
+    font-size: 10px; 
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+.card-body{
+    padding: 0.25rem;
+  }

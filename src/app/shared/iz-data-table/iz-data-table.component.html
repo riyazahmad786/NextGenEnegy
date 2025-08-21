@@ -1,0 +1,60 @@
+<div class="table-container">
+    <!-- Search Bar -->
+    @if (showSearch) {
+    <!-- <input type="text" [(ngModel)]="searchText()" (input)="filterData()" placeholder="Search..." class="search-box" /> -->
+    <input type="text" [ngModel]="searchText()" (ngModelChange)="updateSearchText($event)" placeholder="Search..."
+        class="search-box" />
+
+    }
+    <!-- Data Table -->
+    <table class="data-table">
+        <thead>
+            <tr>
+                @for (col of columns; track col.key) {
+                @if (!col.hidden) {
+                <th (click)="col.sortable ? sortData(col.key) : null">
+                    {{ col.label }}
+                    @if (col.sortable) {
+                    {{ sortedColumn === col.key ? (sortDirection === 'asc' ? '▲' : '▼') : '' }}
+                    }
+                </th>
+                }
+                }
+                @if (actions?.length) {
+                <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (row of paginatedData; track row) {
+            <tr>
+                @for (col of columns; track col.key) {
+                @if (!col.hidden) { <!-- ✅ Skip hidden columns -->
+                <td>{{ row[col.key] }}</td>
+                }
+                }
+                @if (actions?.length) {
+                <td>
+                    @for (action of actions; track action.action) {
+                    <button (click)="onActionClick(action.action, row)" class="action-button">
+                        <i [class]="action.icon"></i> {{ action.label }}
+                    </button>
+                    }
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <!-- Pagination Controls -->
+    <div class="pagination-container">
+        <span class="total-records">Total Records: {{ totalRecords }}</span>
+        <div class="pagination">
+            <button (click)="changePage(currentPage() - 1)" [disabled]="currentPage() === 1">Prev</button>
+            <span>Page {{ currentPage() }} of {{ totalPages }}</span>
+            <button (click)="changePage(currentPage() + 1)" [disabled]="currentPage() === totalPages">Next</button>
+        </div>
+    </div>
+</div>

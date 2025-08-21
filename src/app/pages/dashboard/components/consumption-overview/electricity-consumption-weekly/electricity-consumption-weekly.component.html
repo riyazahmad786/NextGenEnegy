@@ -1,0 +1,24 @@
+<div class="card-box min-height-70px pd-5 data-bgcolor">
+    <div class="d-flex justify-content-between  text-white">
+        <div class="icon h1 text-white">
+            <i class="icon-copy dw dw-storm" aria-hidden="true"></i>
+            <!-- <i class="icon-copy fa fa-stethoscope" aria-hidden="true"></i> -->
+        </div>
+        <div class="font-14 text-right">
+            <div><i class="icon-copy"
+                    [ngClass]="{'ion-arrow-up-c': Percentage >= 0, 'ion-arrow-down-c': Percentage < 0}"></i>
+                {{Percentage|removeNegativeSign}}%</div>
+            <div class="font-12">Since last month</div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-end">
+        <div class="text-white">
+            <div class="font-14">Total Electricity</div>
+            <div class="font-24 weight-500">{{TotalReading|compactNumber }} <span class="type-size">kWh</span></div>
+        </div>
+        <div class="max-width-120">
+            <app-electricity-consumption-weekly-chart
+                [facilitiesData]="facility"></app-electricity-consumption-weekly-chart>
+        </div>
+    </div>
+</div>

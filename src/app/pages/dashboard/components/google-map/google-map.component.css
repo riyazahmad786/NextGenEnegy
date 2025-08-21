@@ -1,0 +1,32 @@
+.location-info {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 20px auto;
+  }
+  
+  .location-info div {
+    margin-bottom: 5px;
+  }
+  
+  .location-info strong {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+.map-location {
+    border: 5px;
+    margin: auto;
+    width: 40%;
+    padding: 10px;
+}
+
+.my-google-map{
+  .map-container{
+    width: 1200px;
+    height: 400px;
+  }
+}

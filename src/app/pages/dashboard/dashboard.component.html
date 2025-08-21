@@ -1,0 +1,5 @@
+@if(facility){
+<app-consumption-overview [facilitiesData]="facility"></app-consumption-overview>
+}
+
+<app-facilities (dataEvent)="handleFacilityData($event)"></app-facilities>

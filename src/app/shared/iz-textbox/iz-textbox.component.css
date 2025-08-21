@@ -1,0 +1,32 @@
+.textbox-container {
+    width: 100%;
+    .form-control {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  }
+  .border-danger {
+    border: 2px solid red !important;
+    border-radius: 4px;
+}
+
+/* Style for invalid and touched/dirty required fields */
+.ng-invalid.ng-touched:not(form),
+.ng-invalid.ng-dirty:not(form) {
+  border-color: red !important; /* Red border for invalid fields */
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25); /* Optional: Add a red glow */
+}
+.required-asterisk {
+  color: red;
+}
+
+.border-red {
+  border: 1px solid red !important;
+}
+
+.border-normal {
+  border: 1px solid #ced4da !important; /* Normal Bootstrap border color */
+}

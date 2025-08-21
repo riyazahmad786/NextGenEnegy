@@ -1,0 +1,176 @@
+<app-menu></app-menu>
+<div class="da-card col-md-12 Page-border">
+    <div>
+        <div class="row">
+            <div class="col-md-12 d-flex">
+                <div class="col-md-1"></div>
+                <div class="left col-md-10 pd-20 card-box Div-border">
+                    <div class="col-md-3 col-sm-12">
+                        <label>Choose Reading Source:</label><br>
+                    </div>
+                    <!-- Radio Buttons -->
+                    <div class="col-md-12 d-flex flex-wrap">
+                        @for (option of radioOptions; track option.value) {
+                        <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12">
+                            <input type="radio" id="customRadio{{option.value}}" name="customRadio"
+                                class="custom-control-input" [checked]="selectedOption() === option.value"
+                                (change)="onSelectionChange(option.value)">
+                            <label class="custom-control-label" for="customRadio{{option.value}}">
+                                {{option.label}}
+                            </label>
+                        </div>
+                        }
+                    </div>
+
+                    <div class="col-md-12 readingRouce">
+                        <label class="readingLabel" id="IZTUtilitybill">Utility Bill Import</label>
+                    </div>
+                    <div *ngIf="successMessage()" class="alert alert-success">
+                        {{ successMessage() }}
+                    </div>
+
+                    <!-- And similarly for error message if not already present -->
+                    <div *ngIf="errorMessage()" class="alert alert-danger">
+                        {{ errorMessage() }}
+                    </div>
+                    <!-- @if (errorMessage()) {
+                    <div class="alert alert-danger">
+                        {{errorMessage()}}
+                    </div>} -->
+
+                    @if (selectedOption() === 'ReadingSource') {
+                    <form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+                        <div class="col-md-12 row">
+                            <div class="col-md-2">
+                                <div style="text-align: center;">
+                                    <br>
+                                    <label id="spnchange" class="title1">Utility Bills</label>
+                                    <div id="btnBind">
+                                        @for (btn of utilityButtons; track $index) {
+                                        <div class="form-group">
+                                            <button type="button" (click)="setActiveButton(btn.value)"
+                                                class="btn Button-border" [class.active]="activeButton === btn.value">
+                                                {{ btn.label }}
+                                            </button>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <br>
+                                <div class="col-md-12" style="text-align:center;">
+                                    <label id="label" class="title1">Import {{actionName()}} Bill</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-dropdown [options]="facilityOptions()" label="Facility"
+                                                formControlName="facility" (change)="onFacilityChange($event)"
+                                                [required]="true"></app-iz-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <app-iz-dropdown [options]="buildingOptions()" label="Building"
+                                                formControlName="building" (change)="onBuildingChange($event)"
+                                                [required]="true"></app-iz-dropdown>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-dropdown [options]="floorOptions()" label="Floor"
+                                                formControlName="floor" (change)="onFloorChange($event)"
+                                                [required]="true"></app-iz-dropdown>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <app-iz-dropdown [options]="meterOptions()" label="Meter"
+                                                formControlName="meter" (change)="onMeterChange($event)"
+                                                [required]="true"></app-iz-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="file" class="form-control-file form-control height-auto"
+                                            (change)="uploadExcel($event)" formControlName="file">
+                                    </div>
+                                    <div class="col-md-8 col-sm-12" style="text-align:right">
+                                        <button type="button" class="btn btn-outline-success" (click)="onSubmit()">
+                                            Import
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    }
+                    @if (selectedOption() === 'directfromdevice') {
+                    <form [formGroup]="deviceForm" (ngSubmit)="onDeviceSubmit()">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <app-iz-dropdown [options]="facilityOptions()" label="Facility"
+                                            formControlName="facility" (change)="onFacilityChange($event)"
+                                            [required]="true"></app-iz-dropdown>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12" style="margin-top: 20px;">
+                                        <input type="submit" id="" class="btn form-control" data-bgcolor="#3b5998"
+                                            data-color="#ffffff" onclick="" value="Realtime Device Discovery"
+                                            style="color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+
+                                        <input type="submit" class="btn form-control" data-bgcolor="#3b5998"
+                                            data-color="#ffffff" onclick="" value="Import BACnet Data from CSV"
+                                            style="color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input (change)="uploadExcel($event)" type="file"
+                                            class="form-control-file form-control height-auto">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10 row Device-border da-card enable-disable">
+                                            <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12"
+                                                id="liBASMAS">
+                                                <input type="radio" id="customRadio4" name="customRadio"
+                                                    class="custom-control-input"><br>
+                                                <label class="custom-control-label" for="customRadio4">Enable</label>
+                                            </div>
+                                            <div class="custom-control custom-radio mb-5 col-md-3 col-sm-12"
+                                                id="liBASMAS">
+                                                <input type="radio" id="customRadio5" name="customRadio"
+                                                    class="custom-control-input"><br>
+                                                <label class="custom-control-label" for="customRadio5">Disable</label>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12" style="text-align:right">
+                                                <button type="button" class="btn" data-bgcolor="#3b5998"
+                                                    data-color="#ffffff"
+                                                    style="color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                    </form>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

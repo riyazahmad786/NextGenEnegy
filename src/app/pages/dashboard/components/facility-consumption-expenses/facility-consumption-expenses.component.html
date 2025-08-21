@@ -1,0 +1,48 @@
+<app-collapsible-panel title="Monthly Buildings Consumption & Expenses" [isCollapsed]="false">
+    <ng-template #panelContent>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12  sidePaddingLeft ">
+                @if(consumptionData.length>0){
+                <app-column-chart [consumptionData]="consumptionData"></app-column-chart>
+                }
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 sidePaddingRight">
+                @if(chartData.length>0){
+                <app-facility-column-chart [chartData]="chartData"></app-facility-column-chart>
+                }
+            </div>
+        </div>
+        @if(chartData.length==0 && consumptionData.length==0) {
+        <div>No data available</div>
+        }
+    </ng-template>
+</app-collapsible-panel>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <app-collapsible-panel title="Buildings Electricity Consumption & Expenses & Total " [isCollapsed]="false">
+            <ng-template #panelContent>
+                @if (totalConsumption() > 0) {
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-10 ml-10 sidePaddingLeft">
+                        <app-expenses [summaryChatData]="summaryConsumption"
+                            [label]="'Electricity Consumption in kWh'"></app-expenses>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-10 ml-10 sidePaddingRight">
+                        <app-consumption [summaryData]="summaryData"
+                            [label]="'Electricity Expenses in USD($)'"></app-consumption>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-10 ml-10 sidePaddingRight">
+                        <app-speedometer [label]="'Consumptions'" [title]="'  kWh'" [type]="'Electricity'"
+                            [values]="totalConsumption()" [id]="'speedometer_Con'"></app-speedometer>
+                    </div>
+                </div>
+                }
+                @else {
+                <div>No data available</div>
+                }
+            </ng-template>
+        </app-collapsible-panel>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+<app-menu></app-menu>
+<div class="BuildingPadding">
+    <div class="da-card col-md-12 Page-border">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 sidePaddingLeft">
+                <div class="left col-md-6 mw-100 pd-20 card-box Div-border">
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="aistrick">User Name:</label>
+                                    <input type="text" formControlName="userName" placeholder="Enter User Name"
+                                        class="form-control"
+                                        [class.is-invalid]="userForm.get('userName')?.invalid && (userForm.get('userName')?.dirty || userForm.get('userName')?.touched)">
+                                    <div *ngIf="userForm.get('userName')?.invalid && (userForm.get('userName')?.dirty || userForm.get('userName')?.touched)"
+                                        class="invalid-feedback">
+                                        <div *ngIf="userForm.get('userName')?.errors?.['required']">
+                                            User name is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="aistrick">E-mail Id:</label>
+                                    <input type="email" formControlName="email" placeholder="Enter Email-Id"
+                                        class="form-control"
+                                        [class.is-invalid]="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+                                    <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+                                        class="invalid-feedback">
+                                        <div *ngIf="userForm.get('email')?.errors?.['required']">
+                                            Email is required
+                                        </div>
+                                        <div *ngIf="userForm.get('email')?.errors?.['email']">
+                                            Please enter a valid email address
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="aistrick">Password:</label>
+                                    <input type="password" formControlName="password" placeholder="Enter the Password"
+                                        class="form-control" [class.is-invalid]="(userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)) || 
+                                       userForm.hasError('passwordMismatch')">
+                                    <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)"
+                                        class="invalid-feedback">
+                                        <div *ngIf="userForm.get('password')?.errors?.['required']">
+                                            Password is required
+                                        </div>
+                                        <div *ngIf="userForm.get('password')?.errors?.['minlength']">
+                                            Password must be at least 4 characters long
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="aistrick">Confirm Password:</label>
+                                    <input type="password" formControlName="confirmPassword"
+                                        placeholder="Enter the confirm Password" class="form-control"
+                                        [class.is-invalid]="(userForm.get('confirmPassword')?.invalid && (userForm.get('confirmPassword')?.dirty || userForm.get('confirmPassword')?.touched)) || 
+                                       userForm.hasError('passwordMismatch')">
+                                    <div *ngIf="(userForm.get('confirmPassword')?.invalid && (userForm.get('confirmPassword')?.dirty || userForm.get('confirmPassword')?.touched)) || 
+                                     userForm.hasError('passwordMismatch')" class="invalid-feedback">
+                                        <div *ngIf="userForm.get('confirmPassword')?.errors?.['required']">
+                                            Please confirm your password
+                                        </div>
+                                        <div *ngIf="userForm.hasError('passwordMismatch')">
+                                            Passwords do not match
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="aistrick">Mobile No:</label>
+                                    <input type="text" formControlName="mobile" placeholder="Enter Mobile No."
+                                        class="form-control"
+                                        [class.is-invalid]="userForm.get('mobile')?.invalid && (userForm.get('mobile')?.dirty || userForm.get('mobile')?.touched)">
+                                    <div *ngIf="userForm.get('mobile')?.invalid && (userForm.get('mobile')?.dirty || userForm.get('mobile')?.touched)"
+                                        class="invalid-feedback">
+                                        <div *ngIf="userForm.get('mobile')?.errors?.['required']">
+                                            Mobile number is required
+                                        </div>
+                                        <div *ngIf="userForm.get('mobile')?.errors?.['pattern']">
+                                            Please enter a valid 10-15 digit mobile number
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="aistrick">Language:</label>
+                                    <select class="custom-select form-control" formControlName="language"
+                                        [class.is-invalid]="userForm.get('language')?.invalid && (userForm.get('language')?.dirty || userForm.get('language')?.touched)">
+                                        <option value="">Select Language</option>
+                                        <option *ngFor="let lang of languageOptions" [value]="lang.id">
+                                            {{ lang.name }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="userForm.get('language')?.invalid && (userForm.get('language')?.dirty || userForm.get('language')?.touched)"
+                                        class="invalid-feedback">
+                                        Please select a language
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label class="aistrick">Facility Name:</label>
+                                    <div class="horizontal-options">
+                                        <!-- swati changes -->
+                                        <div *ngFor="let facility of facilityOptions()" class="form-check">
+                                            <input type="checkbox" class="form-check-input" [value]="facility.value"
+                                                [checked]="userForm.get('facilities')?.value.includes(facility.value)"
+                                                (change)="onFacilityChange($event, facility.value)"
+                                                [disabled]="isFacilityDisabled || !isAddNewMode" />
+                                            <label [class.disabled-label]="isFacilityDisabled || !isAddNewMode">
+                                                {{ facility.label }}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="userForm.get('roles')?.value !== adminRoleId && userForm.get('facilities')?.invalid && (userForm.get('facilities')?.dirty || userForm.get('facilities')?.touched)"
+                                        class="text-danger">
+                                        Please select at least one facility
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @if (shouldShowAdminLink()) {
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label class="aistrick">Role:</label>
+                                    <div class="horizontal-options">
+                                        <div *ngFor="let role of roleOptions" class="form-check">
+                                            <input type="radio" class="form-check-input" [value]="role.id"
+                                                [checked]="userForm.get('roles')?.value === role.id"
+                                                (change)="onRoleChange($event, role.id,role.name)" name="roleSelection"
+                                                [disabled]="!isAddNewMode">
+                                            <label class="form-check-label">{{ role.name }}</label>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="userForm.get('roles')?.invalid && (userForm.get('roles')?.dirty || userForm.get('roles')?.touched)"
+                                        class="text-danger">
+                                        Please select a role
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        <div class="col-md-12 col-sm-12" style="text-align:right;">
+                            <button type="button" (click)="onClear()" class="btn"
+                                style="color: white; background-color: #3b5998;">
+                                Add New
+                            </button>
+                            <button type="submit" *ngIf="userForm.enabled && !isEditMode()" class="btn"
+                                style="color: white; background-color: #3b5998;">
+                                Save
+                            </button>
+                            <button type="submit" *ngIf="isEditMode()" class="btn"
+                                style="color: white; background-color: #3b5998;">
+                                Update
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 sidePaddingRight">
+                <div class="right col-md-6 mw-100 card-box Div-border">
+                    <app-iz-data-table [columns]="tableColumns" [data]="tableData" [actions]="tableActions"
+                        [pageSize]="5" [showSearch]="true" (actionClick)="handleAction($event)"></app-iz-data-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

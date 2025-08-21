@@ -1,0 +1,24 @@
+<div class="dropdown-container">
+    @if (label) {
+    <label [for]="inputId" class="form-label">{{ label }}@if (required===true) {
+        <span style="color: red;"> *</span>}</label>
+    }
+
+    <select [id]="inputId" [class]="customClass" [disabled]="disabled" [value]="value"
+        (change)="onSelectionChange($event)" (blur)="onTouched()" class="custom-select form-control"
+        [attr.title]="title || label || placeholder || 'Select an option'"
+        [attr.aria-labelledby]="label ? inputId + '-label' : null"
+        [attr.aria-label]="label || placeholder || 'Dropdown menu'"
+        [ngClass]="{'border-red': required && isEmpty, 'border-normal': !isEmpty}">
+
+        @if (showDefaultOption) {
+        <option value="">{{ placeholder || 'Please select' }}</option>
+        }
+
+        @for (option of options; track $index) {
+        <option [value]="option.value" [selected]="option.value === value">
+            {{ option.label }}
+        </option>
+        }
+    </select>
+</div>

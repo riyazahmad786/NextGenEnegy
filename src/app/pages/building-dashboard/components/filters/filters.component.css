@@ -1,0 +1,36 @@
+.widget-data{
+    padding: 0px;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+  .modal{background: rgba(0,0,0, .5);}
+  .widget-style3 .widget-data {
+    width: calc(100% - 10px);
+    padding-top: 2px;
+}
+
+.form-control1 {
+  font-size: 14px;
+  border-radius: 1px;
+  height: 40px;
+}
+.btn-labeled.active {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+.input-group {
+  margin-bottom: 2px;
+}
+
+
+.btn-labeled {
+  padding-top: 0;
+  padding-bottom: 0;
+  color: black;
+  font-weight: 600;
+  font-size: 11px;
+}

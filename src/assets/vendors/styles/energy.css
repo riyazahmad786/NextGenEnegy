@@ -1,0 +1,181 @@
+
+.animated.bounceInDown ul {
+    max-height: 400px; /* Set maximum height for the menu */
+    overflow-y: auto; /* Enable vertical scrollbar */
+    margin: 5;
+  }
+
+nav {
+	position: relative;
+	margin: 0px;
+	
+    background: none;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li a {
+	display: block;
+	padding: 10px 15px;
+	color: black;
+    font-weight: 600;
+	text-decoration: none;
+	-webkit-transition: 0.2s linear;
+	-moz-transition: 0.2s linear;
+	-ms-transition: 0.2s linear;
+	-o-transition: 0.2s linear;
+	transition: 0.2s linear;
+}
+nav ul li a:hover {
+	background: #1d4f71;
+	color: #fff;
+}
+nav ul li a .fa {
+	width: 16px;
+	text-align: center;
+	margin-right: 5px;
+	float:right;
+}
+nav ul ul {
+	background: rgba(0, 0, 0, 0.2);
+}
+nav ul li ul li a {
+	
+	border-left: 4px solid transparent;
+	padding: 10px 20px;
+}
+nav ul li ul li a:hover {
+
+	border-left: 4px solid #3498db;
+}
+.btn-label {
+    position: relative;
+    left: -15.7px;
+    display: inline-block;
+    padding: 6px 12px;
+	/* padding-top: 10px;
+	padding-bottom: 10px; */
+    background: #455a64; /* Adjust background as needed */
+	border-radius: 5px 0 0 5px;
+	box-sizing: 2px;
+    /* Set text color here if necessary */
+}
+
+.btn-labeled {
+    padding-top: 0;
+    padding-bottom: 0;
+    color: black;
+	font-weight: 600;
+	font-size: 11px;
+	
+}
+
+ .icon-copy {
+    color: #FFFFFF; /* Set icon color */
+}
+
+.icon-buiColor {
+    color: black; /* Set icon color */
+	height: 40px;
+	font-size: 30px;
+}
+
+.icon-ListColor {
+    color: black; /* Set icon color */
+	height: 22px;
+	font-size: 18px;
+}
+
+.btn-eText {
+    color: black;
+	font-weight: 500;
+	font-size: 13px;
+}
+
+.remove-p-m{
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+@media (min-width: 992px) {
+    .col-xl-custom20 {
+        width: 15%; /* Adjust width as needed for large screens */
+		
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-custom20 {
+        width: 23%; /* Adjust width as needed for large screens */
+		
+    }
+}
+
+/* For medium screens (md) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .col-md-custom20 {
+        width: 100%; /* Adjust width as needed for medium screens */
+    }
+}
+
+/* For small screens (sm) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .col-sm-custom20 {
+        width: 100%; /* Adjust width as needed for small screens */
+    }
+}
+@media (min-width: 992px) {
+    .col-xl-custom80 {
+        width: 80%; /* Adjust width as needed for large screens */
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+    }
+}
+@media (min-width: 992px) {
+    .col-lg-custom80 {
+        width: 77%; /* Adjust width as needed for large screens */
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+    }
+}
+
+/* For medium screens (md) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .col-md-custom80 {
+        width: 100%; /* Adjust width as needed for medium screens */
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+    }
+}
+
+/* For small screens (sm) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .col-sm-custom80 {
+        width: 100%; /* Adjust width as needed for small screens */
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+    }
+}
+
+.epading{
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.chat-box .chat-desc ul, .pd-ltr-20 {
+    padding: 1px 15px 0;
+}
+
+.icon-size{
+	font-size: 15px;
+	color: #fff;
+}
+
+.btn-list .btn {
+     margin: 1px; 
+}

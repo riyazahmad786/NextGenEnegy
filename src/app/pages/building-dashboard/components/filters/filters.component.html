@@ -1,0 +1,382 @@
+<!-- Electricity Consumption / Gas Consumption -->
+<div class="title e-Consumption mb-5">
+    <h2 class="h5 mb-0">{{action()}}</h2>
+</div>
+
+<div [class.disabled]="isDisabled" class="row e-Consumption">
+    <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
+        <div class="card-box height-100-p widget-style3">
+            <div class="d-flex flex-wrap">
+                <div class="widget-data">
+                    @switch (action()) {
+                    @case ("Electricity Consumption") {
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-12">
+                            <div class="btn-list "> @for (config of buttonConfigs; track $index) {
+                                <app-iz-filer-button [label]="config.label" [iconClass]="config.iconClass"
+                                    [isActive]="reportType() === config.label" (typeSelected)="reportShow($event)">
+                                </app-iz-filer-button>
+                                }
+                                <!-- <app-iz-filer-button [label]="'Send Report'" [iconClass]="'icon-copy bi bi-send icon-size'"
+                                        [isActive]="reportType() === 'Send Report'" (typeSelected)="openModal()">
+                                    </app-iz-filer-button>     -->
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-cy="Edownloadpdf" data-toggle="dropdown"
+                                    [label]="'download pdf'" [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'"
+                                    [isDisabled]="isEmailAndDownloadButtonEnable()" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+                            </div>
+                        </div>
+                        @if (curetUrl()==="/report") {
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="input-group ">
+                                <input data-cy="EEmail" type="text" class="form-control" placeholder="Email"
+                                    [(ngModel)]="emailId" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append ">
+                                    <button data-cy="ESend" class="btn btn-outline-secondary"
+                                        (click)="sendEmailReport()" [disabled]="isEmailAndDownloadButtonEnable()">Send
+                                        <!-- <span ><i class="icon-copy bi bi-send icon-size"></i></span> -->
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+                    @case ("Gas Consumption") {
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-12">
+                            <div class="btn-list "> @for (config of buttonConfigs; track $index) {
+                                <app-iz-filer-button [label]="config.label" [iconClass]="config.iconClass"
+                                    [isActive]="reportType() === config.label" (typeSelected)="reportShow($event)">
+                                </app-iz-filer-button>
+                                }
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-cy="Gdownloadpdf" data-toggle="dropdown"
+                                    [label]="'download pdf'" [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+                            </div>
+                        </div>
+                        @if (curetUrl()==="/report") {
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="input-group ">
+                                <input data-cy="GEmail" type="text" class="form-control" placeholder="Email"
+                                    [(ngModel)]="emailId" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append ">
+                                    <button data-cy="GSend" class="btn btn-outline-secondary"
+                                        (click)="sendEmailReport()">Send
+                                        <!-- <span ><i class="icon-copy bi bi-send icon-size"></i></span> -->
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+                    @case ("Water Consumption") {
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-12">
+                            <div class="btn-list "> @for (config of buttonConfigs; track $index) {
+                                <app-iz-filer-button [label]="config.label" [iconClass]="config.iconClass"
+                                    [isActive]="reportType() === config.label" (typeSelected)="reportShow($event)">
+                                </app-iz-filer-button>
+                                }
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-cy="Wdownloadpdf" data-toggle="dropdown"
+                                    [label]="'download pdf'" [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+                            </div>
+                        </div>
+                        @if (curetUrl()==="/report") {
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="input-group ">
+                                <input data-cy="WEmail" type="text" class="form-control" placeholder="Email"
+                                    [(ngModel)]="emailId" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append ">
+                                    <button data-cy="Wsend" class="btn btn-outline-secondary"
+                                        (click)="sendEmailReport()">Send
+                                        <!-- <span ><i class="icon-copy bi bi-send icon-size"></i></span> -->
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    }
+                    @case ("Sustainability Report") {
+
+                    <div class="btn-list">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <button data-cy="GhG" type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'MonthlyGhG'}"
+                                    (click)="reportShow('MonthlyGhG')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy dw dw-calendar1 icon-size"></i></span>Monthly GhG Emission
+                                </button>
+                                <button data-cy="DCo2" type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'DailyCo2'}"
+                                    (click)="reportShow('DailyCo2')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy dw dw-calendar1 icon-size"></i></span>Daily Co2
+                                </button>
+                                <button data-cy="MCo2" type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'MonthlyCo2'}"
+                                    (click)="reportShow('MonthlyCo2')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy dw dw-calendar1 icon-size"></i></span>Monthly Co2 Emission
+                                </button>
+
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-cy="Sdownloadpdf" data-toggle="dropdown"
+                                    [label]="'download pdf'" [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+
+                            </div>
+                            @if (curetUrl()==="/report") {
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="input-group ">
+                                    <input data-cy="SEmail" type="text" class="form-control" placeholder="Email"
+                                        [(ngModel)]="emailId" aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2">
+                                    <div class="input-group-append ">
+                                        <button data-cy="Ssend" class="btn btn-outline-secondary"
+                                            (click)="sendEmailReport()">Send
+                                            <!-- <span ><i class="icon-copy bi bi-send icon-size"></i></span> -->
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+
+                    }
+                    @case ("Electricity Expenses") {
+
+                    <div class="btn-list">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <button type="button" class="btn btn-labeled btn-outline-secondary "
+                                    [ngClass]="{'active': reportType() === 'MonthlyAgainstBudget'}"
+                                    (click)="reportShow('MonthlyAgainstBudget')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy dw dw-calendar1 icon-size"></i></span>Monthly
+                                    Against budget</button>
+                                <button type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'YearlyAgainstBudget'}"
+                                    (click)="reportShow('YearlyAgainstBudget')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-calendar-o icon-size"></i></span>Yearly
+                                    Against budget</button>
+                                <button type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'Monthly'}" (click)="reportShow('Monthly')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy dw dw-calendar1 icon-size"></i></span>Monthly
+                                </button>
+                                <button type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'Yearly'}" (click)="reportShow('Yearly')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-calendar-o icon-size"></i></span>Yearly
+                                </button>
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-cy="Sdownloadpdf" data-toggle="dropdown"
+                                    [label]="'download pdf'" [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+                            </div>
+
+                            @if (curetUrl()==="/report") {
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="input-group ">
+                                    <input data-cy="SEmail" type="text" class="form-control" placeholder="Email"
+                                        [(ngModel)]="emailId" aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2">
+                                    <div class="input-group-append ">
+                                        <button data-cy="Ssend" class="btn btn-outline-secondary"
+                                            (click)="sendEmailReport()">Send
+                                            <!-- <span ><i class="icon-copy bi bi-send icon-size"></i></span> -->
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+                        </div>
+
+                    </div>
+
+                    }
+                    @case ("Trend and Intensity Report") {
+
+                    <div class="btn-list">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <button type="button" class="btn btn-labeled btn-outline-secondary "
+                                    [ngClass]="{'active': reportType() === 'MonthlyTrend'}"
+                                    (click)="reportShow('MonthlyTrend')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-calendar icon-size"></i></span>Monthly
+                                    Trend</button>
+                                <button type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'Hourly'}" (click)="reportShow('Hourly')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-clock-o icon-size"></i></span>Hourly
+                                    Intensity</button>
+                                <button type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'Daily'}" (click)="reportShow('Daily')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy dw dw-calendar1 icon-size"></i></span>Daily
+                                    Intensity </button>
+                                <button type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'Monthly'}" (click)="reportShow('Monthly')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-calendar icon-size"></i></span>Monthly
+                                    Intensity </button>
+                                <button type="button" class="btn btn-labeled btn-outline-secondary"
+                                    [ngClass]="{'active': reportType() === 'Yearly'}" (click)="reportShow('Yearly')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-calendar-o icon-size"></i></span>Yearly
+                                    Intensity</button>
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-toggle="dropdown" [label]="'download pdf'"
+                                    [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+
+                            </div>
+                            @if (curetUrl()==="/report") {
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" placeholder="Email" [(ngModel)]="emailId"
+                                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append ">
+                                        <button class="btn btn-outline-secondary" (click)="sendEmailReport()">Send
+                                            <!-- <span ><i class="icon-copy bi bi-send icon-size"></i></span> -->
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+
+                    }
+                    @case ("Weather Adjusted Energy Consumption") {
+                    <div class="btn-list">
+                        <!-- <div class="row">
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <button type="button" class="btn btn-labeled btn-outline-secondary "
+                                    [ngClass]="{'active': reportType() === 'Monthly'}"
+                                    (click)="reportShow('MonthlyPeakDemand')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-calendar icon-size"></i></span>Monthly</button>
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-toggle="dropdown" [label]="'download pdf'"
+                                    [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+
+                            </div>
+                            @if (curetUrl()==="/report") {
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" placeholder="Email" [(ngModel)]="emailId"
+                                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append ">
+                                        <button class="btn btn-outline-secondary" (click)="sendEmailReport()">Send
+                                            
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div> -->
+                    </div>
+                    }
+                    @case ("Peak Demand") {
+                    <div class="btn-list">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <button type="button" class="btn btn-labeled btn-outline-secondary "
+                                    [ngClass]="{'active': reportType() === 'Monthly'}"
+                                    (click)="reportShow('MonthlyPeakDemand')">
+                                    <span class="btn-label "><i
+                                            class="icon-copy fa fa-calendar icon-size"></i></span>Monthly</button>
+                                @if (curetUrl()==="/report") {
+                                <app-iz-filer-button data-toggle="dropdown" [label]="'download pdf'"
+                                    [iconClass]="'icon-copy fa fa-download icon-size'"
+                                    [isActive]="reportType() === 'download pdf'" (typeSelected)="downloadReport()">
+                                </app-iz-filer-button>
+                                }
+
+                            </div>
+                            @if (curetUrl()==="/report") {
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" placeholder="Email" [(ngModel)]="emailId"
+                                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append ">
+                                        <button class="btn btn-outline-secondary" (click)="sendEmailReport()">Send
+                                            <!-- <span ><i class="icon-copy bi bi-send icon-size"></i></span> -->
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- End Electricity Consumption / Gas Consumption -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Send Email</h4>
+                <button type="button" class="close" aria-label="Close" (click)="closeModal()"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="sendEmailReport()">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" formControlName="email">
+                        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

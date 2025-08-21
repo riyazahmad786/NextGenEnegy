@@ -1,0 +1,102 @@
+<div class="title">
+    <h2 class="h3 mb-0">Consumption Overview</h2>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-md-12 ">
+        <div class="row ">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6" style="padding-right: 6px;">
+                <app-weather [showArea]="false"></app-weather>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 mb-2" style="padding-right: 6px; padding-left: 0px;">
+                <div class="card-box min-height-70px pd-5 eleData-bgcolor">
+                    <div class="d-flex justify-content-between  text-white">
+                        <div class="icon h1 text-white ">
+                            <i class="icon-copy dw dw-storm" aria-hidden="true"></i><span
+                                class="font-14">Electricity</span>
+                            <!-- <i class="icon-copy fa fa-stethoscope" aria-hidden="true"></i> -->
+                        </div>
+                        <div class="font-14 text-right">
+                            <div><i class="icon-copy"
+                                    [ngClass]="{'ion-arrow-up-c': consumptionData['electric'].percentage >= 0, 'ion-arrow-down-c':  consumptionData['electric'].percentage < 0}"></i>
+                                {{consumptionData['electric'].percentage|removeNegativeSign|rounding}}%</div>
+                            <div class="font-12">Since last month</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div class="text-white">
+                            <div class="font-14">Current Month </div>
+                            <div class="font-24 weight-500">{{consumptionData['electric'].totalReading|compactNumber
+                                }}<span class="type-size" title="kilowatt hour"> kWh</span></div>
+                        </div>
+                        <div class="max-width-120">
+                            @if (consumptionData['electric'].chartData.length>0) {
+                            <app-consumptions-overview-chart [name]="'Electricity'" [tooltip]="'kWh'"
+                                [seriesData]="consumptionData['electric'].chartData"></app-consumptions-overview-chart>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 mb-2" style="padding-right: 6px;  padding-left: 0px;">
+                <div class="card-box min-height-70px pd-5 bg-secondary ">
+                    <div class="d-flex justify-content-between  text-white">
+                        <div class="icon h1 text-white">
+                            <i class="icon-copy dw dw-fire" aria-hidden="true"></i><span class="font-14">GAS</span>
+
+                        </div>
+                        <div class="font-14 text-right">
+                            <div><i class="icon-copy"
+                                    [ngClass]="{'ion-arrow-up-c': consumptionData['gas'].percentage >= 0, 'ion-arrow-down-c': consumptionData['gas'].percentage < 0}"></i>
+                                {{consumptionData['gas'].percentage|removeNegativeSign|rounding}}%</div>
+
+                            <div class="font-12">Since last month</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div class="text-white">
+                            <div class="font-14">Current Month </div>
+                            <div class="font-24 weight-500">{{consumptionData['gas'].totalReading|compactNumber}}<span
+                                    class="type-size" title="Therms"> Therms</span></div>
+                        </div>
+                        <div class="max-width-120">
+                            @if (consumptionData['gas'].chartData.length>0) {
+                            <app-consumptions-overview-chart [name]="'GAS'" [tooltip]="'Therms'"
+                                [seriesData]="consumptionData['gas'].chartData"></app-consumptions-overview-chart>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 mb-2" style=" padding-left: 0px;">
+                <div class="card-box min-height-70px pd-5 waterData-bgcolor">
+                    <div class="d-flex justify-content-between  text-white">
+                        <div class="icon h1 text-white">
+                            <i class="icon-copy dw dw-drop" aria-hidden="true"></i><span class="font-14">Water</span>
+                        </div>
+                        <div class="font-14 text-right">
+                            <div><i class="icon-copy"
+                                    [ngClass]="{'ion-arrow-up-c': consumptionData['water'].percentage >= 0, 'ion-arrow-down-c': consumptionData['water'].percentage < 0}"></i>
+                                {{consumptionData['water'].percentage|removeNegativeSign|rounding}}%</div>
+
+                            <div class="font-12">Since last month</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div class="text-white">
+                            <div class="font-14">Current Month</div>
+                            <div class="font-24 weight-500">{{consumptionData['water'].totalReading|compactNumber}}<span
+                                    class="type-size" title="Liter"> Liter</span></div>
+                        </div>
+                        <div class="max-width-120">
+                            @if (consumptionData['water'].chartData.length>0) {
+                            <app-consumptions-overview-chart [name]="'Water'" [tooltip]="'Liter'"
+                                [seriesData]="consumptionData['water'].chartData"></app-consumptions-overview-chart>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

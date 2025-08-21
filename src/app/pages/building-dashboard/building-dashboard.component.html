@@ -1,0 +1,144 @@
+<nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a [routerLink]="['/dashboard']">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Building
+        </li>
+    </ol>
+</nav>
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Building</li>
+    </ol>
+</nav> -->
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
+        <div class="card-box height-100-p widget-style3">
+            <div class="d-flex flex-wrap">
+                <div class="widget-data">
+                    <div class="btn-list">
+                        @for (item of dashboardState.locations(); track $index) {
+                        @if (item.BuildingAvailable==0) {
+                        <button type="button" [class.active]="dashboardState.selectedIndex() === $index"
+                            (click)="selectLocation($index, item)" class="btn btn-labeled btn-outline-secondary "
+                            [disabled]="true">
+                            <span class="btn-label"><i class="icon-copy fa fa-building-o" aria-hidden="true"
+                                    icon-size></i></span>{{item.LocationName}}
+                        </button>
+                        } @else{
+                        <button type="button" [class.active]="dashboardState.selectedIndex() === $index"
+                            (click)="selectLocation($index, item)" class="btn btn-labeled btn-outline-secondary ">
+                            <span class="btn-label"><i class="icon-copy fa fa-building-o" aria-hidden="true"
+                                    icon-size></i></span>{{item.LocationName}}
+                        </button>
+                        }
+
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<app-consumption-overview></app-consumption-overview>
+
+<app-filters [isDisabled]="!dashboardState.isConsumptionHave() && !dashboardState.isExpansionHave()"></app-filters>
+
+<div class="row ">
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 ">
+        <div class="card-box mb-10">
+            <div class="btn-list ">
+                <app-actions></app-actions>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-9  col-lg-9  col-md-9  col-sm-12">
+        <app-daily-ele-consumption></app-daily-ele-consumption>
+    </div>
+</div>
+
+@if (!dashboardState.isConsumptionShow()) {
+<app-collapsible-panel title="{{dashboardState.headerTitle()}}" [isCollapsed]="true">
+    <ng-template #panelContent>
+        <div class="row ">
+            <div class="col-xl-6  col-lg-6  col-md-12  col-sm-12 sidePaddingLeft">
+                @if (electricityData.consumption().length>0) {
+                <app-iz-column-chart [chartType]="dashboardState.chartType()"
+                    [consumptionData]="electricityData.consumption()" [name]="'Monthly ' +dashboardState.name()"
+                    [tooltip]="dashboardState.tooltipTitle()"
+                    [tooltipTitle]="dashboardState.tooltipTitle()"></app-iz-column-chart>
+
+                }
+                @else {
+                <div>No data available</div>
+                }
+
+            </div>
+            <div class="col-xl-6  col-lg-6  col-md-12  col-sm-12 sidePaddingLeft">
+                @if (electricityData.expansion().length>0) {
+                <app-iz-column-chart [consumptionData]="electricityData.expansion()"
+                    [name]="'Monthly ' +dashboardState.nameExpanses()" [tooltip]="'USD($)'"
+                    [tooltipTitle]="'USD($)'"></app-iz-column-chart>
+                }
+                @else {
+                <div>No data available</div>
+                }
+            </div>
+        </div>
+    </ng-template>
+</app-collapsible-panel>
+@if (!dashboardState.isConsumptionAndExpansionShow()) {
+<app-collapsible-panel title="Monthly  Consumption & Expenses" [isCollapsed]="true">
+    <ng-template #panelContent>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-10 ml-10 sidePaddingRight">
+
+                @if (electricityData.expansion().length>0) {
+                <div class="card-box">
+                    <app-expenses [label]="dashboardState.name()+' in '+dashboardState.tooltipTitle()"
+                        [summaryChatData]="electricityData.summaryConsumption()" [title]="dashboardState.tooltipTitle()"
+                        [type]="dashboardState.tooltip()"></app-expenses>
+
+                </div>
+                }
+                @else {
+                <div>No data available</div>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-10 ml-10 sidePaddingRight">
+
+                @if (electricityData.consumption().length>0) {
+                <div class="card-box">
+                    <app-consumption [label]="dashboardState.nameExpanses() +' in USD($)'"
+                        [summaryData]="electricityData.summaryExpansion()" [title]="dashboardState.tooltipTitle()"
+                        [type]="dashboardState.tooltip()"></app-consumption>
+                </div>
+                }
+                @else {
+                <div>No data available</div>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-10 ml-10 sidePaddingRight">
+                @if (electricityData.consumption().length>0) {
+                <app-speedometer [label]="dashboardState.name()" [title]="dashboardState.tooltipTitle() "
+                    [type]="dashboardState.tooltip()" [values]="dashboardState.totalConsumption()"
+                    [id]="'speedometer_Con'"></app-speedometer>
+                }
+                @else {
+                <div>No data available</div>
+                }
+            </div>
+        </div>
+    </ng-template>
+
+</app-collapsible-panel>
+}
+}

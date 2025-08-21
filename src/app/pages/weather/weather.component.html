@@ -1,0 +1,50 @@
+<div class="card-box min-height-70px pd-5 bg-info">
+    <div class="d-flex justify-content-between  text-white" style="
+    padding-top: 5px; padding-left: 10px;">
+        <div class="icon h1 text-white">
+            <div class="text-white">
+                <div class="font-14"><img alt="" src="https://flagcdn.com/28x21/{{countryFlagUrl}}.png" />
+                    <span>&nbsp; &nbsp;</span> {{name}}
+                </div>
+            </div>
+        </div>
+        <div class="font-14 text-right">
+            <div> </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-end" style="
+    padding-left: 8px;">
+        <div class="text-white">
+            <div class="font-14 flex-container">
+                <img [src]="weatherIconUrl" alt="" style="width: 40px;">
+                <span class="h4 text-white weight-400">{{ weatherDescription }}</span>
+            </div>
+
+        </div>
+        <div class="font-14 text-right">
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-end">
+        <div class="text-white">
+            <div class="font-14">Humidity: {{ humidity }}%</div>
+        </div>
+        <div class="font-14 text-right">
+            <div class="text-white">
+                <div class="font-14">{{temperatureFahrenheit}}°F | {{celsius}}°C</div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-end">
+        <div class="text-white" *ngIf="showArea">
+            <div class="font-14">Area: {{ siteArea() }} Sq-ft</div>
+        </div>
+        <div *ngIf="!showArea" class="placeholder"></div>
+    </div>
+    <!-- <div class="d-flex justify-content-between align-items-end" [ngClass]="{'d-none': !showArea}">
+        <div class="text-white">
+            <div class="font-14">Area: {{ siteArea }} Sq-ft</div>
+        </div>
+      
+    </div> -->
+</div>

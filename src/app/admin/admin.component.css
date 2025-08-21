@@ -1,0 +1,33 @@
+.Page-border {
+    border: 2px solid #6d6e70;
+    padding-top: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+    
+}
+.da-card, .da-card .da-card-photo {
+    position: relative;
+    overflow: hidden;
+}
+.card-box, .da-card {
+    background-color: #ffff;
+    border-radius: 8px;
+    box-shadow: 0 0 28px rgba(0, 0, 0, .08);
+}
+
+.FacilityPadding {
+    padding: 3px 0px 2px 2px !important;
+}
+
+.sidePaddingRight{
+    padding-left: 1px;
+    padding-right: 0px;
+    background-color: #ffff;
+}
+
+.sidePaddingLeft{
+    padding-left: 1px; 
+    padding-right: 0px;
+    background-color: #ffff;
+}
